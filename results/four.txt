@@ -1,4 +1,0 @@
-Test "*" (50000 operations) : 105 total clocks, 0.002100 clocks/op
-Test "/" (50000 operations) : 112 total clocks, 0.002240 clocks/op
-Test "sqrt()" (100000 operations) : 383 total clocks, 0.003830 clocks/op
-Test "sin()" (100000 operations) : 4408 total clocks, 0.044080 clocks/op

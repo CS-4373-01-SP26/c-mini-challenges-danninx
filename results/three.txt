@@ -1,5 +1,0 @@
-Result:
-	- Vector of length 10 [ 18817, 18431, 5967, 16686, 25429, 18817, 16835, 17175, 25000, 14060 ]
-
-Time for computation:
-	- 2 clocks

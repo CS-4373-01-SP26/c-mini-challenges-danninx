@@ -1,2 +1,0 @@
-Row Major: sum = 8143.619987 and Clock Ticks are 102
-Column Major: sum = 8143.619987 and Clock Ticks are 106

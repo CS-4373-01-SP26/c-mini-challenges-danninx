@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage{tu-homework}
+
+\authorfirst{Daniel} 
+\authorlast{Fajardo}
+\authorid{1639525}
+\theclass{CS-4373}{01} 
+\report{C Mini Challenges}
+\duedate{\today}
+
+\begin{document} 
+
+\ReportHeader
+
+\problem{Problem 1}
+{
+	Print “Hello, NAME” where NAME is input from the keyboard. 
+
+	Then, answer the following questions:
+	\begin{enumerate}
+			\item Did you try passing your name as an argument from the command line or did you use scanf? Why?
+			\item How did you manage or allocate the strings? (Static or dynamic)
+	\end{enumerate}
+}
+{
+	I chose to have the name be passed as a command line argument, as it meant I did not need to put a character limit or manual string allocation (of memory) into my program.
+
+	This also means that, the string argument could be considered to be dynamic, as they are determined by the command line shell (or other execution environment) at runtime and pushed onto the stack for the \texttt{MAIN} program.
+}
+
+\io{
+	./hello Daniel
+}{
+	Hello, Daniel
+}
+
+\end{document}

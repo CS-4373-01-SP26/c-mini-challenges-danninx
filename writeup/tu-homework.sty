@@ -1,0 +1,179 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{listing}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{minted}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{titling}
+\usepackage{tcolorbox}
+\usepackage{textcomp, gensymb}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+\usepackage[immediate]{silence}
+\WarningFilter{latex}{Command \showhyphens has changed}
+
+\geometry{
+	a4paper,
+	margin=1in,
+	includehead
+}
+
+% Commands run in .tex
+\newcommand{\authorfirst}[1]{
+	\renewcommand{\AuthorFirst}{#1}
+}
+\newcommand{\authorlast}[1]{
+	\renewcommand{\AuthorLast}{#1}
+}
+
+\newcommand{\authorid}[1]{
+	\renewcommand{\AuthorID}{#1}
+}
+
+\newcommand{\theclass}[2]{
+	\renewcommand\CourseID{#1}
+	\renewcommand\SectionID{#2}
+}
+
+\newcommand{\report}[1]{
+	\renewcommand{\ReportName}{#1}
+}
+
+\newcommand{\duedate}[1]{
+	\renewcommand{\DueDate}{#1}
+}
+
+\date{\today}
+
+% For extra header lines
+\newcommand{\leftextra}[1]{
+	\renewcommand{\LeftExtra}{#1}
+}
+
+\newcommand{\rightextra}[1]{
+	\renewcommand{\RightExtra}{#1}
+}
+
+% Renewing and formatting commands ()
+\newcommand{\AuthorFirst}{FIRST-NAME}
+\newcommand{\AuthorLast}{LAST-NAME}
+\newcommand{\AuthorName}{{\AuthorFirst} {\AuthorLast}}
+\newcommand{\AuthorID}{FILL STUDENT ID}
+\newcommand{\CourseID}{COURSE ID}
+\newcommand{\SectionID}{NUM}
+\newcommand{\CourseTitle}{\CourseID-\SectionID}
+\newcommand{\DueDate}{DUE DATE}
+
+\newcommand{\ReportName}{FILL LAB NAME}
+
+\newcommand{\HeaderExtra}{}
+
+% Recursive newlines
+\newcommand{\insertlines}[1]{
+	\RecNewline{#1}{}
+}
+
+\newcommand{\RecNewline}[2]{
+	\ifnum#1>0
+		#2\\\RecNewline{\numexpr#1-1}{#2}
+	\else
+		#2
+	\fi
+}
+
+% Page styles
+\renewcommand{\headrulewidth}{0pt}
+
+\fancypagestyle{first}{
+	\setlength{\headheight}{58pt}
+	\fancyhf{}
+	\fancyhead[L]{\textbf{\CourseTitle} \\ \textbf{\AuthorName} \\ \textbf{Student ID:} \AuthorID \\ \textbf{Due Date:} \DueDate \HeaderExtra}
+}
+\fancypagestyle{normal}{
+	\setlength{\headheight}{0pt}
+	\fancyhf{}
+\fancyfoot[C]{\thepage}
+}
+
+% Auto float arguments
+\renewcommand*{\fps@figure}{!ht}
+\renewcommand*{\fps@table}{!ht}
+
+% Preset Infos
+\newcommand\ReportHeader{
+	\begin{center}
+		\textbf{\ReportName}
+	\end{center}
+	\ReportPages
+}
+
+\newcommand{\TemplateReminder}{
+	\begin{tcolorbox}[colback=red!5!white]
+
+		\subsection*{Before you turn in:}
+		\begin{enumerate}
+			\item Change the template title and relevant headers
+			\item Format the filename: \em{Last-Name\_Assignment\_v\#.pdf}
+			\item Check assignment requirements
+		\end{enumerate}
+	\end{tcolorbox}
+}
+
+\newcommand{\ReportPages}{
+	\thispagestyle{first}
+	\pagestyle{normal}
+	\pagenumbering{arabic}
+}
+
+\newcommand{\problem}[3]{
+    \begin{samepage}
+        \noindent\hrulefill \\
+        \textbf{#1: }{#2}
+
+        \vspace{12pt}
+        \noindent \textbf{Solution: } #3
+    \end{samepage}
+}
+
+\newcommand{\hint}[1]{
+	\emph{Hint: }{#1}
+}
+
+\newtcolorbox{inputbox}[1]{
+    colback=gray!5!white,
+    colframe=gray!75!black,
+    fonttitle=\bfseries,
+    title=#1
+	minted language=sh
+}
+
+\newtcolorbox{outputbox}[1]{
+    colback=gray!5!white,
+    colframe=gray!75!black,
+    fonttitle=\bfseries,
+    title=#1
+}
+
+\newcommand{\io}[2]{
+	\vspace{12pt}
+
+	\begin{inputbox}{Input}
+		#1
+	\end{inputbox}
+
+	\vspace{12pt}
+	\begin{outputbox}{Output}
+		#2
+	\end{outputbox}
+}

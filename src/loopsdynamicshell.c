@@ -2,41 +2,56 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(int argc, char **argv) {
+#ifndef N
+#define N 128
+#endif
+
+#define RANDOMIZE(arr, n) for (i=0; i<n; i++) for (j=0; j<n; j++) arr[i*n+j] = (double) rand()/RAND_MAX;
+
+void row_major() {
 	int i,j;
-	int n = 128;
 	double sum;
 	clock_t end, start;
-	double *arr = malloc(n*n*sizeof(double));
+	double *arr = malloc(N*N*sizeof(double));
 
-	// THIS FILLS THE MATRIX WITH NUMBERS
-	for (i=0; i<n; i++)
-		for (j=0; j<n; j++)
-			arr[i*n+j] = (double) rand()/RAND_MAX;
+	RANDOMIZE(arr, N);
 
-	// ROW MAJOR WORK
 	sum = 0;
 	start = clock();
-	for (i = 0; i<n; i++) 
-		for (j = 0; j<n; j++) 
-			sum += arr[i*n + j];
+	for (i = 0; i<N; i++) 
+		for (j = 0; j<N; j++) 
+			sum += arr[i*N + j];
 	end = clock();
 
-	// NOTE:  YOU'LL NEED TO PROVIDE MEANING TO end AND start
-	printf("Row Major: sum = %lf and Clock Ticks are %ld\n",sum,end-start);
-
-	//ADD YOUR COLUMN MAJOR WORK
-	// YOU'LL NEED TO TIME IT
-	sum = 0;
-	start = clock();
-	for (i=0; i<n; i++)
-		for (j = 0; j<n; j++)
-			sum += arr[j*n + i];
-	end = clock();
-	printf("Column Major: sum = %lf and Clock Ticks are %ld\n",sum,end-start);
-
+	printf("Row Major: %ld clocks\n", end-start);
 
 	free(arr);
+}
+
+void column_major() {
+	int i,j;
+	double sum;
+	clock_t end, start;
+	double *arr = malloc(N*N*sizeof(double));
+
+	RANDOMIZE(arr, N);
+
+	sum = 0;
+	start = clock();
+	for (i=0; i<N; i++)
+		for (j = 0; j<N; j++)
+			sum += arr[j*N + i];
+	end = clock();
+
+	printf("Column Major: %ld clocks\n", end-start);
+
+	free(arr);
+}
+
+
+int main(int argc, char **argv) {
+	row_major();
+	column_major();
 	return 0;
 }
 
