@@ -1,0 +1,6 @@
+provide a string (max length 10 characters):
+original : Daniel
+(caesar) : Gdqlho
+provide a string (max length 10 characters):
+original : Daniel
+(reverse) : leinaD
