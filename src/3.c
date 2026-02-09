@@ -14,24 +14,6 @@ typedef struct {
 	int *data;
 } Vector;
 
-//TODO
-void mult_mat(Matrix *first, Matrix *second) {
-	if (first->cols != second->rows) {
-		printf("Cannot multiply matrices where first.cols != second.rows; aborting...\n");
-		exit(1);
-	}
-
-	int ar = first->rows;
-	int ac = first->cols;
-
-	int br = second->rows;
-	int bc = second->cols;
-
-	for (int i=0; i<ar; i++) {
-
-	}
-}
-
 void mult_mat_vec(Matrix *matrix, Vector *vector, Vector *result) {
 	if (matrix->cols != vector->length) {
 		printf("Cannot multiply matrix and vector where #columns != vector length; aborting...\n");
