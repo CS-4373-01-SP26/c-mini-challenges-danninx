@@ -4,13 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 #define STR_EQ(a, b) strcmp(a, b) == 0
-
-typedef enum {
-	CAESAR,
-	REVERSE,
-} Selection;
+typedef void (*transposition)(char *, int);
 
 void reverse(char *str, int length) {
 	int i,j;
@@ -39,6 +34,10 @@ void caesar(char *str, int length) {
 	}		
 }
 
+void transform(transposition fn, char *str, int length) {
+	fn(str, length);	
+}
+
 int main(int argc, char *argv[]) {
 	if (argc != 2) {
 		printf("usage: six FUNCTION\navailable functions:\n\t- caesar\n\t- reverse");
@@ -46,11 +45,11 @@ int main(int argc, char *argv[]) {
 	}
 
 	char *function = argv[1];
-	Selection func;
+	transposition selection;
 	if (STR_EQ(function, "caesar")) {
-		func = CAESAR;
+		selection = &caesar;
 	} else if (STR_EQ(function, "reverse")) {
-		func = REVERSE;
+		selection = &reverse;
 	} else {
 		printf("function is not valid\navailable functions:\n\t- caesar\n\t- reverse");
 		exit(1);
@@ -62,14 +61,6 @@ int main(int argc, char *argv[]) {
 	scanf("%10s%n", str, &length);
 
 	printf("original : %s\n", str);
-	switch(func) {
-		case CAESAR:
-			caesar(str, length);
-			break;
-		case REVERSE:
-			reverse(str, length);
-			break;
-	}
-	
+	transform(selection, str, length);
 	printf("(%s) : %s\n", function, str);
 }
