@@ -41,12 +41,22 @@ Matrix* matrix_init(int rows, int cols) {
 	return mat;
 }
 
+void free_matrix(Matrix *mat) {
+	free(mat->data);
+	free(mat);
+}
+
 Vector* vector_init(int length) {
 	Vector* vec = (Vector *)calloc(1, sizeof(Vector));
 	vec->length = length;
 	vec->data = calloc(length, sizeof(int));
 
 	return vec;
+}
+
+void free_vector(Vector *vec) {
+	free(vec->data);
+	free(vec);
 }
 
 void fscan_nums(FILE *fd, int *ptr, int n) {
@@ -106,6 +116,10 @@ int main() {
 	print_vector_ln(result);
 
 	printf("\nTime for computation:\n\t- %ld clocks", end-start);
+
+	free_matrix(mat);
+	free_vector(vec);
+	free_vector(result);
 
 	return 0;
 }

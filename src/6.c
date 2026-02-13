@@ -55,12 +55,15 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	printf("provide a string (max length 10 characters):\n");
-	char str[11];
-	int length;
-	scanf("%10s%n", str, &length);
+	printf("provide a string:\n");
+	char *str;
+	size_t bytes;
+
+	ssize_t length = getline(&str, &bytes, stdin);
 
 	printf("original : %s\n", str);
 	transform(selection, str, length);
 	printf("(%s) : %s\n", function, str);
+
+	free(str);
 }

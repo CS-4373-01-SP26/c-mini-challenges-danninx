@@ -3,12 +3,23 @@
 #include <stdio.h>
 
 int main(int argc, char* argv[] ) {
-	if (argc != 2) {
-		printf("usage: hello NAME");
-		exit(1);
+	char *str;
+	size_t bytes;
+	ssize_t length = getline(&str, &bytes, stdin);
+
+	printf("Type your name, and press enter.\n");
+
+	// Since `length` includes the newline, 
+	// we need at least 2 characters
+	if (length < 2) {
+		printf("No name given.\n");
+		return 1;
 	}
 
-	printf("Hello, %s\n", argv[1]);
+	printf("Hello, %s", str);
+
+
+	free(str);
 
 	return 0;
 }

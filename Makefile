@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -O0 -g
 
-FIVE_SIZES = 128 256 512 1024 2048 4196 
+FIVE_SIZES = 128 256 512 1024 2048 4096 
 
 bin:
 	@mkdir -p bin
@@ -18,7 +18,7 @@ six: bin
 all: one two three four five_test six
 results: all 
 	@mkdir -p results
-	./bin/one Daniel > results/one.txt
+	echo 'Daniel' | ./bin/one 
 	./bin/two > results/two.txt
 	./bin/three > results/three.txt
 	./bin/four > results/four.txt

@@ -98,6 +98,8 @@ int main() {
 	print_results("*", mult_results, 50000);
 	print_results("/", div_results, 50000);
 	
+	free(operator_values);
+
 	// FUNCTION TESTS
 	double *function_values = malloc(100000 * sizeof(double));
 	DoubleResult sqrt_results;
@@ -110,6 +112,8 @@ int main() {
 	
 	print_results("sqrt()", sqrt_results, 100000);
 	print_results("sin()", sin_results, 100000);
+
+	free(function_values);
 
 	return 0;
 }
